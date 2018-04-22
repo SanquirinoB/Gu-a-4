@@ -7,13 +7,9 @@ t = np.linspace(0,10,1001)
 dt = t[1]
 v_z = 0
 
-e1=sphere(pos=vector(r,0,0), radius=2,color=color.white,make_trial= True, interval=1)
-e2=sphere(pos=vector(0,r,0), radius=2,color=color.red,make_trial= True, interval=1)
-e3=sphere(pos=vector(0,0,r), radius=2,color=color.orange,make_trial= True, interval=1)
-
-a1=arrow(pos=e1.pos,axis=e2.pos-e1.pos,color=color.green)
-a2=arrow(pos=e2.pos,axis=e3.pos-e2.pos,color=color.yellow)
-a3=arrow(pos=e3.pos,axis=e1.pos-e3.pos,color=color.cyan)
+e1=sphere(pos=vector(r,0,0), radius=0.2,color=color.white,make_trial= True, interval=1)
+e2=sphere(pos=vector(0,r,0), radius=0.2,color=color.red,make_trial= True, interval=1)
+e3=sphere(pos=vector(0,0,r), radius=0.2,color=color.orange,make_trial= True, interval=1)
 
 scene.autoscale = True
 
@@ -24,7 +20,7 @@ z_axis = arrow(pos=vector(0,0,0), axis=vector(0,0,1), color=color.green, shaftwi
 while True:
 	for this_t in t:
 		rate(60)
-		theta = omega*this_t
-		a1.axis = a2.axis = a3.axis = vector(np.cos(theta),np.sin(theta),0)
-		e1.pos =e2.pos = e3.pos = vector(r*np.cos(theta), r*np.sin(theta),
-			v_z*this_t)
+		alpha= omega*this_t
+		e1.pos = vector(r*np.sin(theta),r*np.cos(theta),0)
+		e2.pos = vector(r*np.sin(theta),0,r*np.cos(theta))
+		e3.pos = vector(0,r*np.sin(theta),r*np.cos(theta))
